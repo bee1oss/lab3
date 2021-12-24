@@ -107,7 +107,42 @@ class Main extends JFrame {
         JButton buttonCalc = new JButton("Вычислить");
         buttonCalc.setAlignmentX(CENTER_ALIGNMENT);
 
-        
+
+
+        Box vboxParam = Box.createVerticalBox();
+        vboxParam.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(Color.cyan, Color.cyan), //renk degistirmek icin
+                "Параметры функции:"));
+        vboxParam.add(Box.createVerticalGlue());
+        vboxParam.add(hboxParValue);
+        vboxParam.add(Box.createVerticalStrut(30));
+        vboxParam.add(Func);
+        vboxParam.add(Box.createVerticalStrut(30));
+        vboxParam.add(Box.createVerticalGlue());
+        vboxParam.setMaximumSize(new Dimension(vboxParam.getMaximumSize().width, 100));
+        getContentPane().add(vboxParam);
+        Box Knop = Box.createHorizontalBox();
+        Knop.add(Box.createHorizontalGlue());
+        Knop.add(buttonCalc);
+        Knop.add(Box.createHorizontalStrut(10));
+        Knop.add(Test);
+        Knop.add(Box.createHorizontalStrut(10));
+        Knop.add(Box.createHorizontalGlue());
+
+        Box vboxCalculator = Box.createVerticalBox();
+        vboxCalculator.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(Color.magenta, Color.magenta),//buda diger renk degistirmek icin
+                "Расчет значения функции:"));
+        vboxCalculator.add(Box.createVerticalGlue());
+        vboxCalculator.add(hboxXValue);
+        vboxCalculator.add(Box.createVerticalStrut(50));
+        vboxCalculator.add(hboxYValue);
+        vboxCalculator.add(Box.createVerticalStrut(10));
+        vboxCalculator.add(Knop);
+        vboxCalculator.add(Box.createVerticalGlue());
+        getContentPane().add(vboxCalculator);
+
+        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
     }
 
     public static void main(String[] args) throws Exception {
