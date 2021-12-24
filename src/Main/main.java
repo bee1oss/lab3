@@ -16,23 +16,106 @@ class Main extends JFrame {
         setSize(WIDTH, HEIGHT);
 
         Toolkit kit = Toolkit.getDefaultToolkit();
-        setLocation((kit.getScreenSize().width - WIDTH)/2,
-                (kit.getScreenSize().height - HEIGHT)/2);
+        setLocation((kit.getScreenSize().width - WIDTH) / 2,
+                (kit.getScreenSize().height - HEIGHT) / 2);
 
         JTextField textPar = new JTextField("0", 5);
 
         textPar.setMaximumSize(
                 new Dimension(2 * textPar.getPreferredSize().width,
                         textPar.getPreferredSize().height));
-                
+
+        Box hboxParValue = Box.createHorizontalBox();
+
+        hboxParValue.add(Box.createHorizontalGlue());
+        hboxParValue.add(new JLabel("P:"));
+        hboxParValue.add(Box.createHorizontalStrut(10));
+        hboxParValue.add(textPar);
+        hboxParValue.add(Box.createHorizontalStrut(10));
+
+        JButton Plus = new JButton("+");
+        Plus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                try {
+
+                    Double P = Double.parseDouble(textPar.getText());
+                    textPar.setText(Double.toString(P + 1));
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage(),
+                            "Ошибка!!", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        hboxParValue.add(Plus);
+        hboxParValue.add(Box.createHorizontalStrut(10));
+
+        JButton Minus = new JButton("-");
+        Minus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                try {
+
+                    Double P = Double.parseDouble(textPar.getText());
+                    textPar.setText(Double.toString(P - 1));
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage(),
+                            "Ошибка!!", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        hboxParValue.add(Minus);
+        hboxParValue.add(Box.createHorizontalGlue());
+
+        Box Func = Box.createHorizontalBox();
+        Func.add(Box.createHorizontalGlue());
+        Func.add(new JLabel("Формула f(x) = Х-Р"));
+        Func.add(Box.createHorizontalGlue());
+
+        JTextField textFieldX = new JTextField("", 5);
+
+        textFieldX.setMaximumSize(
+                new Dimension(2 * textFieldX.getPreferredSize().width,
+                        textFieldX.getPreferredSize().height));
+
+        JLabel labelY = new JLabel("");
+        labelY.setMinimumSize(textFieldX.getMaximumSize());
+        labelY.setPreferredSize(textFieldX.getPreferredSize());
+
+        Box hboxXValue = Box.createHorizontalBox();
+
+        hboxXValue.add(Box.createHorizontalGlue());
+        hboxXValue.add(new JLabel("X:"));
+        hboxXValue.add(Box.createHorizontalStrut(10));
+        hboxXValue.add(textFieldX);
+        hboxXValue.add(Box.createHorizontalGlue());
+        hboxXValue.setMaximumSize(
+                new Dimension(hboxXValue.getMaximumSize().width,
+                        hboxXValue.getPreferredSize().height));
 
 
+        Box hboxYValue = Box.createHorizontalBox();
+        hboxYValue.add(Box.createHorizontalGlue());
+        hboxYValue.add(new JLabel("Y:"));
+        hboxYValue.add(Box.createHorizontalStrut(10));
+        hboxYValue.add(labelY);
+        hboxYValue.add(Box.createHorizontalGlue());
+        hboxYValue.setMaximumSize(
+                new Dimension(hboxYValue.getMaximumSize().width,
+                        hboxYValue.getPreferredSize().height));
+        JButton Test = new JButton("Test");
+        Test.setAlignmentX(CENTER_ALIGNMENT);
+
+        JButton buttonCalc = new JButton("Вычислить");
+        buttonCalc.setAlignmentX(CENTER_ALIGNMENT);
+
+        
     }
-        public static void main(String[] args)  {
 
-        }
+    public static void main(String[] args) throws Exception {
 
+        Main frame = new Main();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        frame.setVisible(true);
+    }
 
 }
-
